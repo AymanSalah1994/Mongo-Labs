@@ -1,0 +1,136 @@
+// a
+//
+//db.instructors.aggregate([
+//
+//    {
+//
+//        $project:{
+//
+//            address:{city:"$address.city",street:"$address.street",building:"$address.building"},
+//            fullName:{$concat:["$firstName"," ","$lastName"]}
+//
+//            }//project
+//
+//    }
+//]);
+
+//b
+
+
+//db.students.aggregate([
+//
+//    {
+//
+//            $lookup:{
+//
+//                from:"departments",
+//
+//                localField:"department",
+//
+//                foreignField:"_id",
+//
+//                as :"dept"
+//
+//            
+//                }// lookup  
+//
+//     }// stage
+//     ,
+//     {
+//         $project:
+//         {
+//               fullName:{$concat:["$firstName"," ","$lastName"]},
+//               dapartment:"$dept.name"
+//         }
+//     }// stage2
+//
+//
+//])
+
+//c
+//
+//db.students.aggregate([
+//
+//    {
+//
+//        $project:{
+//
+//            address:{city:"$addresses.city"},
+//            fullName:{$concat:["$firstName"," ","$lastName"]}
+//
+//            }//project
+//
+//    }
+//]);
+
+
+//d
+
+//db.students.aggregate([
+//
+//    {
+//
+//            $lookup:{
+//
+//                from:"subjects",
+//
+//                localField:"subjects",
+//
+//                foreignField:"_id",
+//
+//                as :"studentsubjects"
+//
+//            
+//                }// lookup  
+//
+//     }// stage
+//     ,
+//     {
+//         $project:
+//         {
+//               fullName:{$concat:["$firstName"," ","$lastName"]},
+//               subjects:"$studentsubjects.name"
+//         }
+//     }// stage2
+//
+//
+//])
+
+//e
+//db.students.aggregate([
+//
+//    {
+//
+//            $lookup:{
+//
+//                from:"subjects",
+//
+//                localField:"subjects",
+//
+//                foreignField:"_id",
+//
+//                as :"studentsubjects"
+//
+//            
+//                }// lookup  
+//
+//     }// stage
+//     ,
+//     {
+//
+//    $match:
+//         {
+//             "studentsubjects.name":{$all:["jquery"]}
+//         }
+//           
+ //    },
+//     {
+//         $project:
+//         {
+//               fullName:{$concat:["$firstName"," ","$lastName"]},
+//               subjects:"$studentsubjects.name"
+//         }
+//     }// stage2
+//
+//
+//])
